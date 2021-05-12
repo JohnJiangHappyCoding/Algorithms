@@ -1,0 +1,25 @@
+# primal problem trainning commands, C = 500
+load train.mat;
+svm_model = svm_train_primal( X , y , 500);
+
+# primal test, accuracy is approx. 96.93%
+load test.mat;
+test_accuracy = svm_predict_primal(X , y, svm_model);
+
+# dual problem trainning commands, C= 500
+load train.mat;
+svm_model_d = svm_train_dual( X, y, 500);
+
+# dual test, accuracy is approx. 96.80%
+load test.mat;
+test_accuracy_d = svm_predict_dual(X, y, svm_model_d);
+
+# Comparison with matlab fitcsvm
+load train.mat;
+FITMDL = fitcsvm(X,y);
+load test.mat;
+test_accuracy_fit = fit_predict(X, y, FITMDL);
+
+# Cross Validation with different C values
+test_accuracy_validation = cross(X,y,500);
+
